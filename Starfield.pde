@@ -1,15 +1,45 @@
-//your code here
+NormalParticle hyperspace [];
 void setup()
 {
-	//your code here
+	size(300,300);
+	background(0);
+	hyperspace = new NormalParticle[101];
+	for(int i=0; i<hyperspace.length; i++)
+	{
+		hyperspace[i] = new NormalParticle();
+	}
 }
 void draw()
 {
-	//your code here
+	//background(0);	
+	for(int i=0; i<hyperspace.length; i++)
+	{
+		hyperspace[i].move();
+		hyperspace[i].show();
+	}
 }
 class NormalParticle
 {
-	//your code here
+	double X, Y, Speed, Angle;
+	int Color; 
+	NormalParticle()
+	{
+		X = 150.00;
+		Y = 150.00;
+		Color = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+		Speed = Math.random()*10;
+		Angle = Math.random()*Math.PI*2;
+	}
+	void move()
+	{
+		X = X + Math.cos(Angle)*Speed;
+		Y = Y + Math.sin(Angle)*Speed;
+	}
+	void show()
+	{
+		fill(Color);
+		ellipse((float)X,(float)Y,5,5);
+	}
 }
 interface Particle
 {
